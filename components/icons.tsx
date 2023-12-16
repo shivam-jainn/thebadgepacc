@@ -7,20 +7,16 @@ export const Logo: React.FC<IconSvgProps> = ({
 	height,
 	...props
 }) => (
-	<svg
-		fill="none"
-		height={size || height}
-		viewBox="0 0 32 32"
-		width={size || width}
-		{...props}
-	>
-		<path
-			clipRule="evenodd"
-			d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-			fill="currentColor"
-			fillRule="evenodd"
-		/>
-	</svg>
+<svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 8.75H1.25V6.25H3.75V5H5V1.25H6.25V0H13.75V1.25H15V5H16.25V6.25H18.75V8.75H20V23.75H18.75V25H1.25V23.75H0V8.75ZM7.5 2.5V5H12.5V2.5H7.5ZM17.5 16.25H2.5V17.5H5V20H6.25V17.5H17.5V16.25ZM11.25 12.5H12.5V10H11.25V8.75H8.75V10H7.5V12.5H8.75V13.75H11.25V12.5Z" fill="url(#paint0_linear_9_147)"/>
+<defs>
+<linearGradient id="paint0_linear_9_147" x1="10" y1="0" x2="20.1667" y2="32.0833" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6700FF"/>
+<stop offset="1" stop-color="#09FFFF"/>
+</linearGradient>
+</defs>
+</svg>
+
 );
 
 export const DiscordIcon: React.FC<IconSvgProps> = ({
