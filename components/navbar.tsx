@@ -38,7 +38,7 @@ export const Navbar = () => {
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex items-center justify-start gap-1" href="/">
 						<Logo />
-						<p className="font-bold text-inherit">ACME</p>
+						{/* <p className="font-bold text-inherit">BADGEPACC</p> */}
 					</NextLink>
 				</NavbarBrand>
 				<ul className="justify-start hidden gap-4 ml-2 lg:flex">
@@ -70,17 +70,14 @@ export const Navbar = () => {
 					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
 						<DiscordIcon className="text-default-500" />
 					</Link>
-					<Link isExternal href={siteConfig.links.github} aria-label="Github">
-						<GithubIcon className="text-default-500" />
-					</Link>
+				
 					<ThemeSwitch />
 				</NavbarItem>
 				<NavbarItem className="hidden md:flex">
 					<Button
-            isExternal
 						as={Link}
 						className="text-sm font-normal text-default-600 bg-default-100"
-						href={siteConfig.links.sponsor}
+						href={siteConfig.links.signup}
 						variant="flat"
 					>
 						Collect Badges
@@ -89,9 +86,7 @@ export const Navbar = () => {
 			</NavbarContent>
 
 			<NavbarContent className="pl-4 sm:hidden basis-1" justify="end">
-				<Link isExternal href={siteConfig.links.github} aria-label="Github">
-					<GithubIcon className="text-default-500" />
-				</Link>
+			
 				<ThemeSwitch />
 				<NavbarMenuToggle />
 			</NavbarContent>
