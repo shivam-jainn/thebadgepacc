@@ -3,6 +3,7 @@
   "conventionalCommits.scopes": [
     "auth",
     "verify",
-    "components/navbar"
+    "components/navbar",
+    "Home"
   ]
 }
