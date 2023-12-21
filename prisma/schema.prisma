@@ -76,7 +76,7 @@ model Badge {
 model Tokens {
   id            String   @id @default(cuid())
   issuance_time DateTime
-  issuance_id   String
+  issuance_id   String    
   user          User     @relation(fields: [user_id], references: [id])
   user_id       String
   badge         Badge   @relation(fields: [badge_id], references: [id])

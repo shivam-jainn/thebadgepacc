@@ -4,6 +4,7 @@
     "auth",
     "verify",
     "components/navbar",
-    "Home"
+    "Home",
+    "apis"
   ]
 }

@@ -4,8 +4,9 @@ import {Card } from '@nextui-org/card'
 import { Button } from '@nextui-org/button'
 import { Avatar } from '@nextui-org/avatar';
 import { Skeleton } from '@nextui-org/skeleton';
-
+import { useRouter } from 'next/navigation';
 export default function page() {
+  const router = useRouter();
   return (
     <>
 
@@ -44,7 +45,7 @@ export default function page() {
        <h4 className=" text-large">Change PFP</h4>
         </Button> 
 
-      <Button fullWidth>
+      <Button fullWidth onClick={()=>router.push('/firsttime/finalize')}>
        <h4 className=" text-large">Finalize</h4>
         </Button> 
 </Card>
