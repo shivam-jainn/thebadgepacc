@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 import { NextResponse,NextRequest } from 'next/server';
 import { getToken } from "next-auth/jwt";
 import { randomUUID } from "crypto";
@@ -7,7 +7,7 @@ import { time } from "console";
 const prisma = new PrismaClient();
 const secret = process.env.NEXTAUTH_SECRET;
 
-export async function POST(req: NextRequest,res) {
+export async function POST(req: NextRequest,res:NextResponse) {
     try {
         const body = await req.json()
         

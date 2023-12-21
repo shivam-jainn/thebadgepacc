@@ -33,21 +33,10 @@ export const authOptions: NextAuthOptions = {
       })
     ],
     pages:{
-    //   signIn:'/auth/signin',
-      newUser:'/first-time'
+      // signIn:'/signin',
+      newUser:'/firsttime'
     },
     callbacks: {
-      async session({ token, session }) {
-        if (token) {
-         
-          if(session.user){
-            session.user.isOrganisation = token.isOrganisation;
-          }
-         
-        }
-  
-        return session;
-      },
       async jwt({ token }) {
         const dbUser = await prisma.user.findUnique({
           where: {

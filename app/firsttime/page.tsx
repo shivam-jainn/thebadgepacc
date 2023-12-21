@@ -3,7 +3,7 @@ import React from 'react'
 import {Card, CardBody, CardHeader } from '@nextui-org/card'
 import { Button } from '@nextui-org/button'
 import { useRouter } from 'next/navigation';
-export default function page() {
+export default function Page() {
   const router = useRouter();
   return (
     <>
@@ -17,7 +17,7 @@ export default function page() {
         />
       <CardHeader className="flex-col items-start ">
        <Button fullWidth onClick={() => router.push(`/firsttime/isorg`)}>
-       <h4 className="font-bold text-large">Let's set up your account</h4>
+       <h4 className="font-bold text-large">Let&#39;s set up your account</h4>
         </Button> 
       </CardHeader>
 

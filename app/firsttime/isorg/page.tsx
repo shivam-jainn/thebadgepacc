@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card } from '@nextui-org/card';
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 let options = [
   { label: "Yes", value: "true", key: "true" },
@@ -13,7 +13,7 @@ let options = [
 export default function Page() {
   const [selectedOption, setSelectedOption] = useState("");
 
-  const handleOptionChange = (e) => {
+  const handleOptionChange = (e:React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(e.target.value);        
   };
 

@@ -10,14 +10,18 @@ interface BadgeImage {
   pic: string;
 }
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = async (url: RequestInfo): Promise<any> => {
+  const res = await fetch(url);
+  return res.json();
+};
+
 
 const BadgesPage = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [userData, setUserData] = useState<any>({});
   const [tokens, setTokens] = useState<any[]>([]);
   const [badgeImages, setBadgeImages] = useState<BadgeImage[]>([]);
   const [selectedBadgeIndex, setSelectedBadgeIndex] = useState<number | null>(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const fetchUserData = async () => {
