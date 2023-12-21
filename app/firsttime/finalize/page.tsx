@@ -9,7 +9,7 @@ import { useAtomValue } from 'jotai';
 import useridAtom from "@/atoms/Firstime/useridAtom"
 import usernameAtom from '@/atoms/Firstime/usernameAtom';
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const user_id = useAtomValue(useridAtom)
   const user_name = useAtomValue(usernameAtom)

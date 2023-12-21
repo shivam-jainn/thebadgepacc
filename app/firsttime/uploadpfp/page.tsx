@@ -5,7 +5,7 @@ import { Button } from '@nextui-org/button'
 import { Avatar } from '@nextui-org/avatar';
 import { Skeleton } from '@nextui-org/skeleton';
 import { useRouter } from 'next/navigation';
-export default function page() {
+export default function Page() {
   const router = useRouter();
   return (
     <>

@@ -7,8 +7,8 @@ import { useRouter } from 'next/navigation';
 import { useAtom } from 'jotai';
 import usernameAtom from '@/atoms/Firstime/usernameAtom';
 export default function Page() {
-  const [change, setChange] = useState({ username: "", bio: "" });
   const router = useRouter();
+  const [change, setChange] = useState({ username: "", bio: "" });
   const [username,setUsername] = useAtom(usernameAtom);
   const handleChange = (e, field:string) => {
     const updatedChange = { ...change, [field]: e.target.value };
