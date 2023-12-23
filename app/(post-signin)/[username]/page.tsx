@@ -4,8 +4,8 @@ import { Card } from '@nextui-org/card';
 import { Button } from '@nextui-org/button';
 import { Avatar } from '@nextui-org/avatar';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
-import useSWR from 'swr';
-import Image from 'next/image';
+import { Divider } from '@nextui-org/divider';
+
 interface BadgeImage {
   pic: string;
 }
@@ -51,26 +51,26 @@ const BadgesPage = () => {
   return (
     <>
       {userData && (
-        <Card className='max-w-sm p-3 m-auto'>
-          <Avatar src={userData.image} />
+        <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
+          <Avatar src={userData.image} size='lg' radius='sm' isBordered />
+
+          <div className='flex flex-col'>
           <h2>{userData.name}</h2>
           <p>{`@${userData.username}`}</p>
+          </div>
         </Card>
       )}
 
 
-<div className='w-full p-4 m-4'>
-  
-<hr />
-</div>
+<Divider className='max-w-lg m-auto my-4 bg-gray-500' />
 
-      <div className='max-w-lg grid-cols-3'>
+      <div className='max-w-lg grid-cols-3 sm:grid-cols-1'>
 
         {tokens.map((token, index) => (
           <Card
             isFooterBlurred
             radius="lg"
-            className="max-w-[250px] p-4 border-none"
+            className="max-w-[200px] p-4 m-auto border-none"
             key={index}
           >          {badgeImages[index] ? (
 
