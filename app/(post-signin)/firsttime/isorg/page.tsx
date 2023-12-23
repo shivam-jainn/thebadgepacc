@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card } from '@nextui-org/card';
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 let options = [
   { label: "Yes", value: "true", key: "true" },
@@ -11,6 +11,8 @@ let options = [
 ];
 
 export default function Page() {
+  const router = useRouter();
+
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleOptionChange = (e:React.ChangeEvent<HTMLSelectElement>) => {
@@ -40,7 +42,6 @@ export default function Page() {
     }
   };
 
-  const router = useRouter();
 
   return (
     <Card className='max-w-sm gap-4 p-2 m-auto border-2 border-gray-300 border-solid'>
