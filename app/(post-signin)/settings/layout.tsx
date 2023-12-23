@@ -1,31 +1,52 @@
 "use client";
+import React from 'react'
 import { Card, CardBody } from '@nextui-org/card'
 import { Tab, Tabs } from '@nextui-org/tabs'
-import React from 'react'
+import { Button } from '@nextui-org/button';
+import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/navbar';
+import { IconArrowNarrowLeft } from '@tabler/icons-react';
+import Link from 'next/link';
+import {useSession} from "next-auth/react";
 
 export default function Layout() {
+
+  const {data: session, status} = useSession();
+  // console.log("session", session);
+  
   return (
       <>
-        <div className="flex flex-col w-full">
+         <div className='max-w-md py-2 m-auto my-2 h-fit'>
+          <Button>
+            <Link href={`/${session.user.name}`}>
+            <IconArrowNarrowLeft/>
+            </Link>
+          </Button>
+         </div>
+     
+        <div className="flex flex-col max-w-md m-auto">
       <Tabs aria-label="Options">
         <Tab key="Profile" title="Profile">
           <Card>
             <CardBody>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <h6>Update your profile&#39;s info</h6>
             </CardBody>
           </Card>  
         </Tab>
         <Tab key="Socials" title="Socials">
           <Card>
             <CardBody>
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                <h6>Connect your socials</h6>
+                
             </CardBody>
           </Card>  
         </Tab>
         <Tab key="Delete Account" title="Delete Account">
           <Card>
             <CardBody>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <h6>Deleting your account will make you lose all your data , think before you do anything ! ! !</h6>
+              <Button color='danger' variant='flat' size='sm' className='mt-2'>
+                  Yes , i am aware , let&#39;s destroy everything 
+              </Button>
             </CardBody>
           </Card>  
         </Tab>
