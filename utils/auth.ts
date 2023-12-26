@@ -1,4 +1,4 @@
-import { NextAuthOptions } from "next-auth";
+import { DefaultUser, NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
 import GithubProvider from "next-auth/providers/github";
@@ -8,7 +8,10 @@ import {PrismaAdapter} from '@auth/prisma-adapter'
 const prisma = new PrismaClient();
 const scopes = ['identify', 'email']
 
-
+export interface ExtendedUser extends DefaultUser {
+  username?: string | null;
+  isOrganisation?: boolean | null;
+}
 
 export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
@@ -50,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       },
       async session({session,token}){
         session.user.username = token.username;
-        session.user.isOranisation = token.isOrganisation;
+        session.user.isOrganisation = token.isOrganisation;
 
         return session;
       }

@@ -8,7 +8,8 @@ const secret = process.env.NEXTAUTH_SECRET;
 export async function GET(req: NextRequest, res: NextResponse) {
   try {
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
+    console.log(token);
+    
     if (!token) {
       return NextResponse.json({ message: 'Unauthorized' });
     }
@@ -40,9 +41,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
       badgeImages: badgeImages,
     };
 
+    console.log(response);
+    
     return NextResponse.json(response);
   } catch (error) {
     console.error('Error:', error);
-    return NextResponse.json({ error: 'An error occurred' }); // Provide a response for error scenarios
+    return NextResponse.json({ error: error }); // Provide a response for error scenarios
   }
 }
