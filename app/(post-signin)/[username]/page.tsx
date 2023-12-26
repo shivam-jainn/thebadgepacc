@@ -32,6 +32,8 @@ const BadgesPage = () => {
           const data = await response.json();
           setTokens(data.tokens);
           setBadgeImages(data.badgeImages);
+          console.log(data);
+          
         } else {
           throw new Error('Failed to fetch user data');
         }
