@@ -5,7 +5,10 @@ import { Button } from '@nextui-org/button'
 import { Avatar } from '@nextui-org/avatar';
 import { Skeleton } from '@nextui-org/skeleton';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+
 export default function Page() {
+  const {data : session,status} = useSession();
   const router = useRouter();
   return (
     <>
@@ -16,7 +19,7 @@ export default function Page() {
         <div className='flex flex-row items-center h-full gap-4'>
 
 <div>
-       <Avatar isBordered className='w-20 h-20' radius="sm" src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
+       <Avatar isBordered className='w-20 h-20' radius="sm" src={session.user.image} />
 </div>
 
 
