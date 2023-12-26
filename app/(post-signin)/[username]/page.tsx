@@ -33,7 +33,7 @@ const BadgesPage = () => {
           setTokens(data.tokens);
           setBadgeImages(data.badgeImages);
           console.log(data);
-          
+
         } else {
           throw new Error('Failed to fetch user data');
         }
@@ -52,12 +52,12 @@ const BadgesPage = () => {
 
   const { data: session, status } = useSession();
   console.log(session);
-    
+
 
   return (
     <>
-      {status === 'loading' ? (
-        <Skeleton>
+      {status === 'loading' || !session || !session.user ? (
+          <Skeleton>
             <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
               <Avatar src={session?.user.image} size='lg' radius='sm' isBordered />
               <div className='flex flex-col'>
@@ -65,65 +65,65 @@ const BadgesPage = () => {
                 <p>{`@${session.user.username}`}</p>
               </div>
             </Card>
-        </Skeleton>
+          </Skeleton>
       ) : (
-        <>
-          <div>
-              <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
-                <Avatar src={session.user.image} size='lg' radius='sm' isBordered />
-                <div className='flex flex-col'>
-                  <h2>{session.user.name}</h2>
-                  <p>{`@${session.user.username}`}</p>
-                </div>
-              </Card>
-          </div>
-          
-          <Divider className='max-w-lg m-auto my-4 bg-gray-500' />
+      <>
+        <div>
+          <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
+            <Avatar src={session.user.image} size='lg' radius='sm' isBordered />
+            <div className='flex flex-col'>
+              <h2>{session.user.name}</h2>
+              <p>{`@${session.user.username}`}</p>
+            </div>
+          </Card>
+        </div>
 
-          <div className='max-w-lg grid-cols-3 sm:grid-cols-1'>
-            {tokens.map((token, index) => (
-              <Card
-                isFooterBlurred
-                radius="lg"
-                className="max-w-[200px] p-4 m-auto border-none"
-                key={index}
-              >
-                {badgeImages[index] ? (
-                  <img
-                    alt="Badge"
-                    className="object-cover m-auto mb-4 rounded-lg"
-                    height={200}
-                    src={badgeImages[index].pic}
-                    width={200}
-                    onClick={() => handleModalOpen(index)}
-                  />
-                ) : (
-                  <p>Loading...</p>
-                )}
-                <Button onClick={() => handleModalOpen(index)}>View More</Button>
-              </Card>
-            ))}
-          </div>
+        <Divider className='max-w-lg m-auto my-4 bg-gray-500' />
 
-          <Modal isOpen={isOpen} onClose={onClose} backdrop="blur">
-            <ModalContent>
-              <ModalHeader>Badge Details</ModalHeader>
-              <ModalBody>
-                {selectedBadgeIndex !== null && (
-                  <p>Details for badge {selectedBadgeIndex} will be shown here.</p>
-                )}
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" onClick={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onClick={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </>
+        <div className='max-w-lg grid-cols-3 sm:grid-cols-1'>
+          {tokens.map((token, index) => (
+            <Card
+              isFooterBlurred
+              radius="lg"
+              className="max-w-[200px] p-4 m-auto border-none"
+              key={index}
+            >
+              {badgeImages[index] ? (
+                <img
+                  alt="Badge"
+                  className="object-cover m-auto mb-4 rounded-lg"
+                  height={200}
+                  src={badgeImages[index].pic}
+                  width={200}
+                  onClick={() => handleModalOpen(index)}
+                />
+              ) : (
+                <p>Loading...</p>
+              )}
+              <Button onClick={() => handleModalOpen(index)}>View More</Button>
+            </Card>
+          ))}
+        </div>
+
+        <Modal isOpen={isOpen} onClose={onClose} backdrop="blur">
+          <ModalContent>
+            <ModalHeader>Badge Details</ModalHeader>
+            <ModalBody>
+              {selectedBadgeIndex !== null && (
+                <p>Details for badge {selectedBadgeIndex} will be shown here.</p>
+              )}
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={onClose}>
+                Close
+              </Button>
+              <Button color="primary" onClick={onClose}>
+                Action
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
       )}
     </>
   );
