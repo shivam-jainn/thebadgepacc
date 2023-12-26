@@ -36,7 +36,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
     });
 
     const response = {
-      userData: userData,
       tokens: tokens,
       badgeImages: badgeImages,
     };

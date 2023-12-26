@@ -45,8 +45,14 @@ export const authOptions: NextAuthOptions = {
         });
   
         token.isOrganisation = Boolean(dbUser?.isOrganisation);
-  
+        token.username = dbUser?.username;
         return token;
       },
+      async session({session,token}){
+        session.user.username = token.username;
+        session.user.isOranisation = token.isOrganisation;
+
+        return session;
+      }
     }
   };

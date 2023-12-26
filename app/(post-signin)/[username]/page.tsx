@@ -18,8 +18,8 @@ const fetcher = async (url: RequestInfo): Promise<any> => {
 };
 
 const BadgesPage = () => {
+
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [userData, setUserData] = useState<any>({});
   const [tokens, setTokens] = useState<any[]>([]);
   const [badgeImages, setBadgeImages] = useState<BadgeImage[]>([]);
   const [selectedBadgeIndex, setSelectedBadgeIndex] = useState<number | null>(null);
@@ -30,7 +30,6 @@ const BadgesPage = () => {
         const response = await fetch('/api/user');
         if (response.ok) {
           const data = await response.json();
-          setUserData(data.userData);
           setTokens(data.tokens);
           setBadgeImages(data.badgeImages);
         } else {
@@ -57,28 +56,24 @@ const BadgesPage = () => {
     <>
       {status === 'loading' ? (
         <Skeleton>
-          {userData && (
             <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
-              <Avatar src={userData.image} size='lg' radius='sm' isBordered />
+              <Avatar src={session?.user.image} size='lg' radius='sm' isBordered />
               <div className='flex flex-col'>
-                <h2>{userData.name}</h2>
-                <p>{`@${userData.username}`}</p>
+                <h2>{session?.user.name}</h2>
+                <p>{`@${session.user.username}`}</p>
               </div>
             </Card>
-          )}
         </Skeleton>
       ) : (
         <>
           <div>
-            {userData && (
               <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
-                <Avatar src={userData.image} size='lg' radius='sm' isBordered />
+                <Avatar src={session.user.image} size='lg' radius='sm' isBordered />
                 <div className='flex flex-col'>
-                  <h2>{userData.name}</h2>
-                  <p>{`@${userData.username}`}</p>
+                  <h2>{session.user.name}</h2>
+                  <p>{`@${session.user.username}`}</p>
                 </div>
               </Card>
-            )}
           </div>
           
           <Divider className='max-w-lg m-auto my-4 bg-gray-500' />
