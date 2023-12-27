@@ -1,17 +1,10 @@
 "use client";
-import { Fragment } from "react";
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
 import { Navbar } from "@/components/navbar";
 import styles from "./main.module.css"
 import { useEffect, useState } from 'react';
 import { press2play } from "@/config/fonts";
-
+import { Button } from "@nextui-org/button";
 export default function Home() {
 	const [blocks, setBlocks] = useState([]);
 
@@ -50,15 +43,26 @@ export default function Home() {
 		<Navbar />
 
 			<div className="justify-center inline-block m-auto text-center">  
-				<h1 className="text-6xl font-black " style={press2play.style}>Badgepacc</h1>
+
+			<div>
+				<h1 className="text-6xl font-black max-sm:text-xl " style={press2play.style}>Badgepacc</h1>
 				<br />
 				
-				<h2 className={subtitle({ class: "mt-4" })}>
+				<h2 className={subtitle({ class: "mt-1" })}>
 					Your badge , Your pacc
 				</h2>
+			</div>
+
+				<div className={styles.floatdiv}>
+				<Button>
+				Register
+				</Button>
+			</div>
+
 			</div>	
 
 
+	
 			<div className={styles.grid}>
 				{
 					 Array.from({ length: 20 }).map((_, index) => (
