@@ -53,11 +53,11 @@ export default function Home() {
 				</h2>
 			</div>
 
-				<div className={styles.floatdiv}>
+				{/* <div className={styles.floatdiv}>
 				<Button>
 				Register
 				</Button>
-			</div>
+			</div> */}
 
 			</div>	
 
