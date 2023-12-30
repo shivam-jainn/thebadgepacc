@@ -21,7 +21,7 @@ export default function Page() {
 
   const handleContinueClick = async () => {
     try {
-      console.log(selectedOption);
+      // console.log(selectedOption);
       const response = await fetch('/api/firsttime/isorg', {
         method: 'POST',
         headers: {

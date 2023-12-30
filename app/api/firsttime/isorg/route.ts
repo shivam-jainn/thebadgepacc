@@ -17,7 +17,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
         }
 
         const isOrg: boolean = body.isorg === 'true';
-        console.log(isOrg);
+        // console.log(isOrg);
         
         
         const response = await prisma.user.update({

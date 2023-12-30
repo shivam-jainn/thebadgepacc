@@ -10,7 +10,7 @@ export async function POST(req: NextRequest,res:NextResponse) {
         
         const body = await req.json()
         const issuance_id = body.issuance_id;
-        console.log(issuance_id);
+        // console.log(issuance_id);
         
         const response = await prisma.tokens.findFirst({
             where: {
