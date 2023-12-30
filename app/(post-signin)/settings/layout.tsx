@@ -15,7 +15,7 @@
   export default  function Layout() {
 
     const {data: session, status} = useSession();
-    console.log("session", session);
+    // console.log("session", session);
     
     const [providers, setProviders] = useState({});
     useEffect(()=>{

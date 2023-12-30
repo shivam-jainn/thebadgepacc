@@ -45,7 +45,7 @@ export default function Page() {
   <Card className='max-w-sm gap-4 p-2 px-2 m-auto mt-4 border-2 border-gray-300 border-solid' >
 
   <Button fullWidth>
-       <h4 className=" text-large">Change PFP</h4>
+       <h4 className=" text-large">Change PFP (coming soon) </h4>
         </Button> 
 
       <Button fullWidth onClick={()=>router.push('/firsttime/finalize')}>

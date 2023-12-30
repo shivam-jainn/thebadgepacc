@@ -2,35 +2,35 @@
 import React from 'react'
 import {Card } from '@nextui-org/card'
 import { Button } from '@nextui-org/button'
-import { Skeleton } from '@nextui-org/skeleton';
 import { useRouter } from 'next/navigation';
-import { getToken } from 'next-auth/jwt';
-import { useAtomValue } from 'jotai';
-import useridAtom from "@/atoms/Firstime/useridAtom"
-import usernameAtom from '@/atoms/Firstime/usernameAtom';
+import { useSession } from 'next-auth/react';
 
 export default function Page() {
   const router = useRouter();
-  const user_id = useAtomValue(useridAtom)
-  const user_name = useAtomValue(usernameAtom)
+  const {data : session,status} = useSession();
+
   const handleContinueClick = async () => {
     try {
-
+      // console.log(session.user);
+      
+      const username = session.user.username;
+      // console.log(username);
+      
       const response = await fetch('/api/token/issue', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_id: user_id, badge_id:"clqc3e1aa0000i51a87irek6c" }),
+        body: JSON.stringify({ username: username, badge_id:"clqs8tg7a0000iibfxwbch88j" }),
       });
 
       
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
-      router.push('/firsttime/username-bio')
-
+      // console.log(response);
+      
+      router.push(`/${session.user.username}`);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -52,7 +52,7 @@ export default function Page() {
       {/* </Skeleton> */}
 
     {/* <Skeleton> */}
-      <Button radius='sm' onClick={()=> router.push(`/shivamjainn`)}>Claim</Button>
+      <Button radius='sm' onClick={handleContinueClick}>Claim</Button>
     {/* </Skeleton> */}
 
 </Card>

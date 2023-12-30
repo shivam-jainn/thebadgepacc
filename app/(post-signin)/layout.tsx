@@ -18,7 +18,7 @@ export default function Layout({ children}) {
     }
   }, [status, router]);
 
-  console.log(status);
+  // console.log(status);
   
   
     return (
