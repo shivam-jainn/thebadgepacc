@@ -1,4 +1,5 @@
 "use client";
+// just something so that i can commit
 import { title, subtitle } from "@/components/primitives";
 import { Navbar } from "@/components/navbar";
 import styles from "./main.module.css"
