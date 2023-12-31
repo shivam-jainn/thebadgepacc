@@ -130,3 +130,5 @@ const BadgesPage = () => {
 };
 
 export default BadgesPage;
+
+export const dynamic = 'force-dynamic'
