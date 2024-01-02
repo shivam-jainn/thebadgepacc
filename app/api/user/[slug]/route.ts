@@ -5,20 +5,20 @@ import { getToken } from 'next-auth/jwt';
 const prisma = new PrismaClient();
 const secret = process.env.NEXTAUTH_SECRET;
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(  request: Request,
+  { params }: { params: { slug: string } }) {
   try {
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-    // console.log(token);
     
-    if (!token) {
-      return NextResponse.json({ message: 'Unauthorized' });
-    }
-
+    const slug = params.slug;
+    
     const userData = await prisma.user.findUnique({
       where: {
-        email: token.email!,
+        username: slug!,
       },
     });
+
+    console.log(userData);
+    
 
     const tokens = await prisma.tokens.findMany({
       where: {
@@ -37,6 +37,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
     });
 
     const response = {
+      user:userData,
       tokens: tokens,
       badgeImages: badgeImages,
     };
