@@ -7,7 +7,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 import { Divider } from '@nextui-org/divider';
 import { Skeleton } from '@nextui-org/skeleton';
 import { useParams } from 'next/navigation'
-import { notFound } from 'next/navigation';
+import NotFoundPage from './NotFoundPage';
 
 interface BadgeImage {
   pic: string;
@@ -32,7 +32,7 @@ const BadgesPage = ({ searchParams }) => {
           const data = await response.json();
 
           if(data.error === "user-not-found"){
-            setError("user-not-found");
+            setStatus("user-not-found");
             return ;
           }
 
@@ -59,10 +59,6 @@ const BadgesPage = ({ searchParams }) => {
     onOpen();
   };
 
-  if(error==='user-not-found'){
-    notFound();
-  }
-
   return (
     <>
       {status === 'loading' ? (
@@ -76,6 +72,9 @@ const BadgesPage = ({ searchParams }) => {
           </Card>
         </Skeleton>
       ) : (
+        status==="user-not-found"?
+          <NotFoundPage/>
+        :
         <>
           <div>
             <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
