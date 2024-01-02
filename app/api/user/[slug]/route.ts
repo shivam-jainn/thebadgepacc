@@ -5,24 +5,27 @@ import { getToken } from 'next-auth/jwt';
 const prisma = new PrismaClient();
 const secret = process.env.NEXTAUTH_SECRET;
 
-export async function GET(  request: Request,
-  { params }: { params: { slug: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
   try {
-    
     const slug = params.slug;
-    
+
+    if (!slug) {
+      return NextResponse.error(); // Handle cases where slug is missing
+    }
+
     const userData = await prisma.user.findUnique({
       where: {
-        username: slug!,
+        username: slug,
       },
     });
 
-    console.log(userData);
-    
+    if (!userData) {
+      return NextResponse.json({error:"user-not-found"});
+    }
 
     const tokens = await prisma.tokens.findMany({
       where: {
-        user_id: userData?.id,
+        user_id: userData.id,
       },
     });
 
@@ -37,16 +40,14 @@ export async function GET(  request: Request,
     });
 
     const response = {
-      user:userData,
+      user: userData,
       tokens: tokens,
       badgeImages: badgeImages,
     };
 
-    // console.log(response);
-    
     return NextResponse.json(response);
   } catch (error) {
-    console.error('Error:', error);
-    return NextResponse.json({ error: error }); // Provide a response for error scenarios
+    console.error('Error fetching user data:', error);
+    return NextResponse.error();
   }
 }
