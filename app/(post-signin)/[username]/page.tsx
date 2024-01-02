@@ -5,34 +5,35 @@ import { Button } from '@nextui-org/button';
 import { Avatar } from '@nextui-org/avatar';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
 import { Divider } from '@nextui-org/divider';
-import { useSession } from 'next-auth/react';
 import { Skeleton } from '@nextui-org/skeleton';
+import { useParams } from 'next/navigation'
 
 interface BadgeImage {
   pic: string;
 }
 
-const fetcher = async (url: RequestInfo): Promise<any> => {
-  const res = await fetch(url);
-  return res.json();
-};
-
-const BadgesPage = () => {
-
+const BadgesPage = ({searchParams}) => {
+  
+  const params = useParams()
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [tokens, setTokens] = useState<any[]>([]);
   const [badgeImages, setBadgeImages] = useState<BadgeImage[]>([]);
   const [selectedBadgeIndex, setSelectedBadgeIndex] = useState<number | null>(null);
-
+  const [status,setStatus] = useState("loading");
+  const [userData,setUserData] = useState(null);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('/api/user');
+        const response = await fetch(`/api/user/${params.username}`);
         if (response.ok) {
           const data = await response.json();
           setTokens(data.tokens);
           setBadgeImages(data.badgeImages);
-          console.log(data);
+          setUserData(data.user);
+          
+          setStatus("loaded");
+          console.log(userData);
 
         } else {
           throw new Error('Failed to fetch user data');
@@ -50,19 +51,18 @@ const BadgesPage = () => {
     onOpen();
   };
 
-  const { data: session, status } = useSession();
-  console.log(session);
+  
 
 
   return (
     <>
-      {status === 'loading' || !session || !session.user ? (
+      {status === 'loading' ? (
           <Skeleton>
             <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
-              <Avatar src={session?.user.image} size='lg' radius='sm' isBordered />
+              <Avatar src="/FIRSTBADGE.png" size='lg' radius='sm' isBordered />
               <div className='flex flex-col'>
-                <h2>{session?.user.name}</h2>
-                <p>{`@${session.user.username}`}</p>
+                <h2>Some username</h2>
+                <p>Something ig</p>
               </div>
             </Card>
           </Skeleton>
@@ -70,10 +70,10 @@ const BadgesPage = () => {
       <>
         <div>
           <Card className='flex flex-row justify-between max-w-sm gap-12 p-4 m-auto'>
-            <Avatar src={session.user.image} size='lg' radius='sm' isBordered />
+            <Avatar src={userData.image} size='lg' radius='sm' isBordered />
             <div className='flex flex-col'>
-              <h2>{session.user.name}</h2>
-              <p>{`@${session.user.username}`}</p>
+              <h2>{userData.name}</h2>
+              <p>{`@${userData.username}`}</p>
             </div>
           </Card>
         </div>
