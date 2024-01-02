@@ -26,8 +26,8 @@ export default function Signincard({title}:SigninCardProps) {
             <h1 className='text-xl font-bold '>{title}</h1>   
             </div>
             {/* <Button className='p-2 text-black bg-slate-100' variant='flat' onClick={() => signIn("google")} radius='sm' size='lg' startContent={<IconBrandGoogleFilled/>} >Google</Button> */}
-            <Button className='p-2 text-black bg-slate-100' variant='flat' onClick={() => signIn("discord")} radius='sm' size='lg' startContent={<IconBrandDiscordFilled/>} >Discord</Button>
-            <Button className='p-2 text-black bg-slate-100' variant='flat' onClick={() => signIn("github")} radius='sm' size='lg' startContent={<IconBrandGithubFilled/>} >Github</Button>
+            <Button className='p-2 text-black bg-slate-100' variant='flat' onClick={() => signIn("discord",{callbackUrl:"/"})} radius='sm' size='lg' startContent={<IconBrandDiscordFilled/>}  >Discord</Button>
+            <Button className='p-2 text-black bg-slate-100' variant='flat' onClick={() => signIn("github",{callbackUrl:"/"})} radius='sm' size='lg' startContent={<IconBrandGithubFilled/>} >Github</Button>
         </div>
     </div>
   )
