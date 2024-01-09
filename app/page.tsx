@@ -1,84 +1,127 @@
 "use client";
 import { title, subtitle } from "@/components/primitives";
 import { Navbar } from "@/components/navbar";
-import styles from "./main.module.css"
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { press2play } from "@/config/fonts";
 import { Button } from "@nextui-org/button";
+import BadgeMarquee from "@/components/HomePage/BadgeMarquee";
+import BadgeStep from "@/components/HomePage/BadgeStep";
+import SOYBDivIcons from "@/components/HomePage/SOYBDivIcons";
+import Footer from "@/components/Footer";
 export default function Home() {
-	const [blocks, setBlocks] = useState([]);
 
-	useEffect(() => {
-		const getBlocks = () => {
-		  const BlockSize = window.innerWidth * 0.05;
-		  const noOfBlocks = Math.ceil(window.innerHeight / BlockSize);
-		  const blocksArray = [];
-		
-		  const colorize = (e)=>{
-			e.target.style.background = "white";
-
-			setTimeout(()=>{
-				e.target.style.background = "transparent";
-
-			},300)
-		  }
-
-		  for (let index = 0; index < noOfBlocks; index++) {
-			blocksArray.push(<div onMouseEnter={(e)=>{
-				colorize(e)
-			}} key={`b_${index}`} className={styles.block}></div>);
-		  }
-	
-		  setBlocks(blocksArray);
-		};
-
-		if (typeof window !== 'undefined') {
-			getBlocks();
-		  }
-		}, []);
-	
 
 	return (
-<>
-		<Navbar />
+		<>
+			<Navbar />
 
-			<div className="justify-center inline-block m-auto text-center">  
-
-			<div>
-				<h1 className="text-6xl font-black max-sm:text-xl " style={press2play.style}>Badgepacc</h1>
-				<br />
+			{/* <section className="justify-center inline-block m-auto text-center">
 				
-				<h2 className={subtitle({ class: "mt-1" })}>
-					Your badge , Your pacc
-				</h2>
-			</div>
+			</section> */}
 
-				{/* <div className={styles.floatdiv}>
-				<Button>
-				Register
-				</Button>
+			<section className="flex flex-col gap-8 px-6 py-6 text-center py-auto">
+
+				<div className="flex flex-col gap-3">
+					<h1 className="text-3xl ">
+						Welcome to <span className={`font-bold cc-gradient-green-text`}>Badgepacc</span>
+					</h1>
+
+					<h3>Your badge . Your Pacc</h3>
+				</div>
+
+				<BadgeMarquee />
+
+				<div className="flex gap-8 mx-auto">
+					<Button variant="solid" fullWidth radius="sm">
+						Collect Badges
+					</Button>
+
+					<Button variant="bordered" fullWidth radius="sm">
+						Explore more
+					</Button>
+				</div>
+
+
+			</section>
+
+			<section className="flex flex-col gap-8 px-6 py-6 text-center py-auto">
+				{/* <div className="w-[150px] border-4 transform rotate-[-36.2deg] border-solid border-[#E46DC3] rounded-[50%] bg-gradient-for-img-badgelayer">
+				<img src="/mern-dev-here-badge.png" alt="" className="rounded-[50%]" />
 			</div> */}
 
-			</div>	
+				<p className="max-w-sm m-auto text-4xl font-extrabold leading-9 text-center">
+					Keeping track of achievements shouldnt be hard
+				</p>
 
+				<p className="max-w-sm m-auto text-3xl font-semibold leading-9 text-center">
+					Badgepacc makes it easier in 3 steps
+				</p>
 
-	
-			<div className={styles.grid}>
-				{
-					 Array.from({ length: 20 }).map((_, index) => (
-						<div key={index} className={styles.column}>
-						   {blocks.length > 0 && (
-        <div>
-          {blocks.map((block, index) => (
-            <div key={`block_${index}`}>{block}</div>
-          ))}
-        </div>
-      )}
-						</div>
-					  ))
-				}
-				
-			</div>
+				<div className="flex flex-col items-center gap-8 md:flex-row md:justify-center ">
+					<BadgeStep step="1" desc="Complete tasks" />
+					<BadgeStep step="2" desc="Badge issuance takes place" />
+					<BadgeStep step="3" desc="Claim badge and share your achievements" />
+				</div>
+
+			</section>
+
+			<section className="flex flex-col gap-8 px-6 py-6 text-center py-auto">
+				<div>
+					<h1 style={press2play.style} className="max-w-sm mx-auto text-xl">
+						Show off <br />
+						your badges
+					</h1>
+				</div>
+
+				<SOYBDivIcons />
+
+				<div style={press2play.style} className="max-w-sm mx-auto text-xl">
+					OR
+				</div>
+
+				<div>
+					<h1 style={press2play.style} className="max-w-sm mx-auto text-xl">
+						Join over 100+ clubs and  500+ communities to make and collect badges
+					</h1>
+				</div>
+
+				<div className="flex items-center justify-center w-full ">
+					<Button variant="solid" className="px-16" radius="sm">
+						Create Badges
+					</Button>
+				</div>
+			</section>
+
+			<section className="flex flex-col gap-8 px-6 text-center py-auto">
+				<div className="flex w-full p-4 my-8 md:flex-3">
+					<div>
+					<h1>
+						The <br /> <span style={press2play.style}>Fane</span> <br /> Club
+					</h1>
+					<p className="max-w-sm">
+					“ Distributing badges and encouraging healthy competition has never been easier”
+					</p>
+					</div>
+
+					<div className="hidden md:block">
+					<h1>
+						<b>Desa.</b>stack
+					</h1>
+					<p className="max-w-sm">
+					“ Maintaining open source community is hard and to reward them to work for free is even more harder . This is our way to show appreciation.”					</p>
+					</div>
+
+					<div className="hidden md:block">
+					<h1>
+					<b>Arentus</b>
+					</h1>
+					<p className="max-w-sm">
+					“As a musician , its tough to make fans feel appreciated , this is my way to show them love “					</p>
+					</div>
+				</div>
+			</section>
+
+			<Footer />
 		</>
 	);
 }
