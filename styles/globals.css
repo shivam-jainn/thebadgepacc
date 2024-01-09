@@ -47,11 +47,40 @@
   
 
   .footer-gradient-border {
-    
-    border-top: 1px solid;
-    border-image: linear-gradient(166deg, #FFF 10.11%, #09FFFF 80%, black 90%) 1;
-    padding: 10px; /* Adjust padding if needed */
+    position: relative;
+    padding-top: 10px; /* Adjust padding if needed */
   }
   
+  .footer-gradient-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px; /* Adjust the height as needed */
+    background-image: linear-gradient(166deg, #FFF 10.11%, #09FFFF 80%, black 90%);
+    animation: moveGradient 4s linear infinite;
+    z-index: 1; /* Ensure it's above the content */
+  }
   
+  @keyframes moveGradient {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
   
+
+  
+
+.golden-black-hue {
+  --shadow-color: rgba(231, 198, 81, 0.5);
+
+  box-shadow:
+    0 0 5px 10px var(--shadow-color),
+    0 0 8px 10px rgb(243, 216, 82); /* Missing units might be needed for compatibility */
+  
+z-index: -100;
+}
