@@ -17,7 +17,6 @@ export function UserNavbar({
   return (
     <nav
       className={cn("flex justify-between px-4 py-2 mb-2 items-center  lg:space-x-6", className)}
-      {...props}
     >
       <div className="max-md:hidden">
       <Link
@@ -35,7 +34,7 @@ export function UserNavbar({
       </div>
       <AlertDrawer/>
    
-      <AvatarNav />
+      {/* <AvatarNav /> */}
       </div>
     </nav>
   )

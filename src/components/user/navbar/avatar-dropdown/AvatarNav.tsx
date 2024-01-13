@@ -13,13 +13,13 @@ import { Avatar,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
   
-  export function AvatarNav() {
+  export function AvatarNav(user:any) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative w-8 h-8 rounded-full">
             <Avatar className="w-8 h-8">
-              <AvatarImage src="/avatars/01.png" alt="@shadcn" />
+              <AvatarImage src={user.img} alt="@shadcn" />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
           </Button>

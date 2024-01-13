@@ -1,7 +1,7 @@
 import React from 'react';
 
 // composites
-import SignInCard from '../signin/components/SignInCard';
+import SignInCard from '../login/components/SignInCard';
 
 
 export default function Page() {

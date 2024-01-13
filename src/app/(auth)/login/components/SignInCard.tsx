@@ -1,11 +1,22 @@
 import React from 'react';
+
+
 import { Button } from '@/components/ui/button';
 
 // Logos
 import { FaGoogle,FaDiscord } from "react-icons/fa";
 import {IoLogoGithub} from "react-icons/io";
 
-export default function SignInCard({signup}:{signup:boolean}) {
+// Lucia Auth
+import { auth } from "@/auth/lucia";
+import * as context from "next/headers";
+import { redirect } from "next/navigation";
+
+export default async function SignInCard({signup}:{signup:boolean}) {
+  const authRequest = auth.handleRequest("GET", context);
+	const session = await authRequest.validate();
+	if (session) redirect("/");
+
   return (
     <div className='flex w-[80%] m-auto max-md:flex-col max-md:absolute max-md:top-[20%]   '>
       <div className='flex-1 rounded-l-lg'>
@@ -26,9 +37,12 @@ export default function SignInCard({signup}:{signup:boolean}) {
             <FaDiscord size={24} />
               Sign {signup?"Up":"In"} With Discord
             </Button>
-            <Button className='gap-3 p-2 text-black bg-white hover:bg-white/80' variant='secondary' size='lg'>
+         
+            <Button className='p-2 text-black bg-white hover:bg-white/80' variant='secondary' size='lg' >
+              <a href="/login/github" className='flex items-center gap-3'>
               <IoLogoGithub size={24}/>
               Sign {signup?"Up":"In"} With Github
+              </a>
             </Button>
           </div>
         </div>
