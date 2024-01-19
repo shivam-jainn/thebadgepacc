@@ -20,7 +20,7 @@ import Logo from '../../../public/logo.svg';
 import HamClosed from '@/assets/navbar/HamburgerClosed.svg';
 import HamCross from '@/assets/navbar/HamCross.svg';
 
-export default function NavbarLanding() {
+export default function NavbarLanding({className}:{className?:string}) {
   const [hamOpen, setHamOpen] = useState(false);
 
   const handleOpen = (prev) => {
@@ -29,7 +29,7 @@ export default function NavbarLanding() {
   };
 
   return (
-    <nav className='bg-[#1E1C1C] flex justify-between items-center p-4 rounded-md mx-4 my-4'>
+    <nav className={`${className} bg-[#1E1C1C] flex justify-between items-center p-4 rounded-md mx-4 my-4`}>
       <div>
         <Image src={Logo} alt='Badgepacc logo' />
       </div>
