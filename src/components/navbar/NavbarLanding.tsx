@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from 'react';
-
-// primitive
+import React,{useState} from 'react'
+import Image from 'next/image';
 import { Button } from '../ui/button';
 import {
     Sheet,
@@ -14,29 +13,32 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 
-// image
-import Image from 'next/image';
-import Logo from '../../../public/logo.svg';
 import HamClosed from '@/assets/navbar/HamburgerClosed.svg';
-import HamCross from '@/assets/navbar/HamCross.svg';
 
-export default function NavbarLanding({className}:{className?:string}) {
+
+export default function NavbarLanding() {
   const [hamOpen, setHamOpen] = useState(false);
-
+  
   const handleOpen = (prev) => {
     console.log(prev.value);
     setHamOpen(!prev);
   };
 
   return (
-    <nav className={`${className} bg-[#1E1C1C] flex justify-between items-center p-4 rounded-md mx-4 my-4`}>
-      <div>
-        <Image src={Logo} alt='Badgepacc logo' />
-      </div>
-
-      <div className='hidden md:block'>
+    <>
+      <div className=' flex justify-evenly items-center gap-4 max-md:hidden'>
         <Button variant='link' className='text-white'>
           Home
+        </Button>
+        <Button variant='link' className='text-white'>
+          Pricing
+        </Button>
+
+        <Button variant='secondary' >
+          Sign In
+        </Button>
+        <Button className='border-white border-2 bg-transparent hover:bg-white hover:text-black' >
+          Sign Up
         </Button>
       </div>
 
@@ -58,6 +60,6 @@ export default function NavbarLanding({className}:{className?:string}) {
     </Sheet>
 
       </div>
-    </nav>
-  );
+    </>
+  )
 }

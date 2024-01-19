@@ -1,23 +1,25 @@
-import NavbarLanding from '@/components/navbar/NavbarLanding'
-import BagSection from '@/components/pages/landing/BagSection'
-import RecordingAchSection from '@/components/pages/landing/RecordingAchSection'
-import StepsSection from '@/components/pages/landing/StepsSection'
-import ShowOffSection from '@/components/pages/landing/ShowOffSection'
-import JoinUsSection from '@/components/pages/landing/JoinUsSection'
-import OpenSource from '@/components/pages/landing/OpenSource'
+import Navbar from '@/components/navbar/Navbar'
+import Landing from '@/components/pages/landing/Landing';
+import Dashboard from '@/components/pages/dashboard/Dashboard';
 
-export default function Home() {
+import { authOptions } from '@/lib/auth-utils/auth';
+
+import { getServerSession } from 'next-auth';
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  console.log(session);
+  
   return (
     <>
-      <NavbarLanding />
+      <Navbar />
 
     <section className='px-8'>  
-      <BagSection />
-      <RecordingAchSection />
-      <StepsSection />
-      <ShowOffSection />
-      <JoinUsSection />
-      <OpenSource />
+      {
+        (session?.user)?
+          <Dashboard isOrg={false} />
+        :
+        <Landing />
+      }
     </section>
     </>
   )
