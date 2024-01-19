@@ -5,65 +5,64 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    --foreground: 0 0% 3.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    --card-foreground: 0 0% 3.9%;
  
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
+    --popover-foreground: 0 0% 3.9%;
  
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
  
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
  
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
  
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
  
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
  
     --radius: 0.5rem;
   }
  
   .dark {
-    --background: 0, 0%, 0%;
-    --foreground: 210 20% 98%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
  
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
  
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
  
-    --primary: 241 57% 97%;
-    --primary-foreground: 241 40% 94%;
-    
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
  
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
  
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
  
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
  
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 98%;
  
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
   }
 }
  
@@ -75,77 +74,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-
-/* BadgeMarquee.css */
-.marquee-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.marquee-content {
-  display: flex;
-  animation: marqueeAnimation 10s linear infinite;
-}
-
-@keyframes marqueeAnimation {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* Ensure the images align seamlessly */
-.marquee-content > div {
-  flex-shrink: 0;
-  margin-right: 2%; /* Adjust this margin as needed */
-}
-
-
-
-/* Heading */
-.cc-gradient-green-text{
-  background: linear-gradient(90deg, #24FF00 28.13%, rgba(29, 10, 245, 0.92) 101.95%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-
-
-.bg-gradient-for-img-badgelayer {
-  background: radial-gradient(628.92% 111.75% at 21.74% 23.19%, rgba(0, 0, 0, 0.40) 0%, rgba(234, 234, 234, 0.40) 100%), url('../assets/FIRSTBADGE.png') lightgray;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-
-.footer-gradient-border {
-  position: relative;
-  padding-top: 10px; /* Adjust padding if needed */
-}
-
-.footer-gradient-border::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1px; /* Adjust the height as needed */
-  background-image: linear-gradient(166deg, #FFF 10.11%, #09FFFF 80%, black 90%);
-  animation: moveGradient 4s linear infinite;
-  z-index: 1; /* Ensure it's above the content */
-}
-
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 0;
-  }
-  100% {
-    background-position: 100% 0;
-  }
-}
-
-
-
-
