@@ -23,7 +23,7 @@ export default function Navbar({ className }: { className?: string }) {
     const isOrg = false;
 
     return (
-        <nav className={`${className} bg-[#1E1C1C] flex justify-between items-center p-4 rounded-md mx-4 my-4`}>
+        <nav className={`${className} ${(!session?.user)?"bg-[#1E1C1C]":"bg-transparent"} flex justify-between items-center p-4 rounded-md mx-4 my-4`}>
             <div>
                 <Image src={Logo} alt='Badgepacc logo' />
             </div>

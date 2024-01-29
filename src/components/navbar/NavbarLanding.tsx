@@ -16,7 +16,11 @@ import {
 import HamClosed from '@/assets/navbar/HamburgerClosed.svg';
 
 
-export default function NavbarLanding() {
+interface Navbarprops{
+  isDark?:boolean
+}
+
+export default function NavbarLanding({isDark}:Navbarprops) {
   const [hamOpen, setHamOpen] = useState(false);
   
   const handleOpen = (prev) => {
@@ -26,7 +30,7 @@ export default function NavbarLanding() {
 
   return (
     <>
-      <div className=' flex justify-evenly items-center gap-4 max-md:hidden'>
+      <div className={` flex justify-evenly items-center gap-4 max-md:hidden ${isDark?"bg-black":""} `}>
         <Button variant='link' className='text-white'>
           Home
         </Button>

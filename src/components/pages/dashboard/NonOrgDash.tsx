@@ -8,7 +8,7 @@ import BagOfBadges from '../../../assets/pages/landing/BagOfBadges.svg'
 export default function NonOrgDash() {
     const organisationName = "badgepacc";
     const badgeName = "Bag Badge";
-    const badgeDesc = "A badge to show love for eco custome... lorem loremloremloremloremloremloremloremlorem"
+    const badgeDesc = "A badge to show love for eco customer lorem lorem lorem lorem lorem lorem lorem loremlorem"
 
   return (
     <section >
@@ -22,10 +22,10 @@ export default function NonOrgDash() {
                 <Card className='max-w-[50%] '>
                     <Image src={BagOfBadges} alt='a bag with badges' />
                 </Card>
-                <div className='flex flex-col items-center max-w-[50%] mx-auto text-pretty'>
+                <div className='flex flex-col items-center max-w-[50%] mx-auto '>
                     <span>@ <b>{organisationName}</b></span>
                     <span><b>{badgeName}</b></span>
-                    <p className='text-wrap whitespace-normal'>{badgeDesc}</p>
+                    <p className='text-wrap break-words'>{badgeDesc}</p>
 
 
                 </div>
