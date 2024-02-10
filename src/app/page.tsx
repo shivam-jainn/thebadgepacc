@@ -22,7 +22,7 @@ export default async function Home() {
     <section className='px-8'>  
       {
         (session?.user)?
-          <Dashboard isOrg={true} />
+          <Dashboard isOrg={false} />
         :
         <Landing />
       }

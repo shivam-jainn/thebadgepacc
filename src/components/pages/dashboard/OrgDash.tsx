@@ -5,16 +5,19 @@ import { Card,CardHeader,CardTitle,CardDescription,CardContent } from '@/compone
 import { Button } from '@/components/ui/button';
 
 import { useSearchParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import AddBadge from '@/assets/pages/org/AddBadge';
 export default function OrgDash() {
   const tokenIssued = 100
   const searchParams = useSearchParams();
-
+  const { data: session, status } = useSession()
+  console.log(session);
+  
   const search = searchParams.get('addbadge')  
   
   return (
     <>
-      {search?<AddBadge modal={true}  />:""}
+      {search?<AddBadge modal={true} userName={session?.user.username}   />:""}
     <section className={`${search?"blur-xl":""}`}>
         <h1 className='text-4xl font-bold'>Hello , Shivam</h1>
 
