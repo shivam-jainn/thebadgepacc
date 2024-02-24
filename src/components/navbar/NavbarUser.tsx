@@ -56,9 +56,9 @@ export default function NavbarUser({ isOrg }: { isOrg: boolean }) {
                     {data.length > 0 ? (
                         <CommandGroup heading="Suggestions">
                             {data.map((user) => (
-                                <CommandItem key={user.id}>
+                                <CommandItem key={user['id']}>
                                     <Avatar>
-                                        <AvatarImage src={user.image} />
+                                        <AvatarImage src={user['image']} />
                                     </Avatar>
                                 </CommandItem>
                             ))}

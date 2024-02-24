@@ -8,7 +8,7 @@ import { IoClose } from "react-icons/io5";
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 
-export default function AddBadge({ modal, userName }: { modal?: boolean, userName: string }) {
+export default function AddBadge({ modal, userName }: { modal?: boolean, userName?: string }) {
   const router = useRouter();
   const [badgeImage, setBadgeImage] = useState(null);
   const [fields, setFields] = useState({
@@ -18,12 +18,12 @@ export default function AddBadge({ modal, userName }: { modal?: boolean, userNam
   const session = useSession();
 
 
-  const handleChange = (e, field: string) => {
+  const handleChange = (e:any, field: string) => {
     const updatedChange = { ...fields, [field]: e.target.value };
     setFields(updatedChange);
   };
 
-  const handleBadgeUpload = (e) => {
+  const handleBadgeUpload = (e:any) => {
     const file = e.target.files[0];
     setBadgeImage(file);
   };

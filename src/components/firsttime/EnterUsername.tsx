@@ -12,7 +12,7 @@ export default function EnterUsername() {
                 Welcome to Badgepacc
                 </CardTitle>
                     <CardDescription>
-                    Let's set up your acount
+                    Let&apos;s set up your acount
                 </CardDescription>
             </CardHeader>
             <CardContent className='flex flex-col gap-4'>

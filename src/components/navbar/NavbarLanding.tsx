@@ -23,7 +23,7 @@ interface Navbarprops{
 export default function NavbarLanding({isDark}:Navbarprops) {
   const [hamOpen, setHamOpen] = useState(false);
   
-  const handleOpen = (prev) => {
+  const handleOpen = (prev:any) => {
     console.log(prev.value);
     setHamOpen(!prev);
   };

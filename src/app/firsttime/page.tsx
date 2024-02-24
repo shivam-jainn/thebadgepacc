@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 
 
-export default function page() {
+export default function Page() {
 const router = useRouter();
 
 const handleNextClick = ()=> {
@@ -23,7 +23,7 @@ const handleNextClick = ()=> {
             Welcome to Badgepacc
           </CardTitle>
           <CardDescription>
-            Let's set up your acount
+            Let&#39;s set up your acount
           </CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col gap-4'>

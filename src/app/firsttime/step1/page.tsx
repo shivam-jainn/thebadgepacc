@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { useAtom } from 'jotai';
 import usernameAtom from '@/atoms/Firstime/usernameAtom';
 
-export default function page() {
+export default function Page() {
   const [username,setUsername] = useAtom(usernameAtom);
   const [bio, setBio] = useState('');
   const [isOrg, setIsOrg] = useState(false);
@@ -37,15 +37,15 @@ export default function page() {
     })
   }
 
-  const handleBioChange = (e) => {
+  const handleBioChange = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     setBio(e.target.value);
   }
 
-  const handleOrgChange = (e) => {
+  const handleOrgChange = (e:string) => {
     setIsOrg((prev)=>!prev);
   }
 
-  const handleUsernameChange = (e) =>{
+  const handleUsernameChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
     setUsername(e.target.value);
   }
 
@@ -57,7 +57,7 @@ export default function page() {
             Welcome to Badgepacc
           </CardTitle>
           <CardDescription>
-            Let's set up your account
+            Let&apos;s set up your account
           </CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col gap-4'>

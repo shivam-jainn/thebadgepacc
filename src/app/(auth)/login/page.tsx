@@ -3,7 +3,7 @@ import Image from 'next/image';
 import BagOfBadges from '../../../assets/pages/landing/BagOfBadges.svg'
 import AuthCard from '@/components/auth/AuthCard';
 import NavbarLanding from '@/components/navbar/NavbarLanding';
-export default function page() {
+export default function Page() {
   return (
     <section className='px-8'>
 

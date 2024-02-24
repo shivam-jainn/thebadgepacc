@@ -9,6 +9,7 @@ export default function BadgeGrid() {
   Required<ListObjectsCommandOutput>["Contents"]
 >([]);
 
+
   useEffect(() => {
     const client = new S3Client({
       region: 'us-east-1',
@@ -27,7 +28,6 @@ export default function BadgeGrid() {
             className="max-w-[200px] flex flex-col p-4 m-auto border-none radius-lg"
             key={index}
           >
-            {badgeImages[index] ? (
               <img
                 alt="Badge"
                 className="object-cover m-auto mb-4 rounded-lg max-h-[200px]"
@@ -35,9 +35,7 @@ export default function BadgeGrid() {
                 src="https://images.pexels.com/photos/19526761/pexels-photo-19526761/free-photo-of-photo-of-an-industrial-wall.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 width={200}
               />
-            ) : (
-              <p>Loading...</p>
-            )}
+            )
             <Button>View More</Button>
           </Card>
         ))}
