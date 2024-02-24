@@ -99,7 +99,7 @@ export default function Page() {
                 alt="Badge"
                 className="object-cover m-auto mb-4 rounded-lg max-h-[200px]"
                 height={200}
-                src={badge.pic}
+                src={badge['pic']}
                 width={200}
               />
             ) : (

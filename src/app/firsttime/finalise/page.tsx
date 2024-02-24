@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useAtomValue } from 'jotai';
 import usernameAtom from '@/atoms/Firstime/usernameAtom';
 
-export default function page() {
+export default function Page() {
     const router = useRouter();
     const username = useAtomValue(usernameAtom);
 const handleNextClick = ()=> {
@@ -23,7 +23,7 @@ const handleNextClick = ()=> {
                     Your account has been set up
                 </CardTitle>
                     <CardDescription>
-                    Let's claim your first badge !
+                    Let&apos;s claim your first badge !
                 </CardDescription>
             </CardHeader>
 

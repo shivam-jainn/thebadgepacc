@@ -17,7 +17,7 @@ export default function OrgDash() {
   
   return (
     <>
-      {search?<AddBadge modal={true} userName={session?.user.username}   />:""}
+      {search?<AddBadge modal={true} userName={(session?.user as any)?.username}   />:""}
     <section className={`${search?"blur-xl":""}`}>
         <h1 className='text-4xl font-bold'>Hello , Shivam</h1>
 

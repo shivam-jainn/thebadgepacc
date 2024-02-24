@@ -1,23 +1,17 @@
-import { DefaultUser, NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
 import GithubProvider from "next-auth/providers/github";
-import { PrismaClient } from "@prisma/client"
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { Session } from "inspector";
-
+import {PrismaAdapter} from '@auth/prisma-adapter' 
+import { Adapter } from "next-auth/adapters";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const scopes = ['identify', 'email']
 
-export interface ExtendedUser extends DefaultUser {
-  username?: string | null;
-  isOrganisation?: boolean | null;
-  userId : string;
-}
 
 
 export const authOptions: NextAuthOptions = {
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(prisma) as Adapter,
     secret : process.env.NEXTAUTH_SECRET!,
     session: {
       strategy: 'jwt',
@@ -43,21 +37,26 @@ export const authOptions: NextAuthOptions = {
       newUser:'/firsttime'
     },
     callbacks: {
-      async jwt({ token }) {
+      async jwt({ token,user }) {
         const dbUser = await prisma.user.findUnique({
           where: {
             email: token.email!,
           },
         });
-  
-        token.isOrganisation = Boolean(dbUser?.isOrganisation);
-        token.username = dbUser?.username;
+        
+        if (user) {
+          token.isOrganisation = Boolean(dbUser?.isOrganisation);
+          token.username = dbUser?.username as string;
+        }
         return token;
+
+       
       },
       async session({session,token}){
-        session.user.username = token.username;
-        session.user.isOrganisation = token.isOrganisation;
-
+        if (token && session.user) {
+          session.user.username = token.username;
+          session.user.isOrganisation = token.isOrganisation;
+        }
         return session;
       }
     }
