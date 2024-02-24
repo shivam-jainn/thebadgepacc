@@ -27,18 +27,18 @@ export default function NavbarUser({ isOrg }: { isOrg: boolean }) {
     const [userSearch, setUserSearch] = useState('');
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        const handleUserSearch = async () => {
-            if (userSearch.length > 1) {
-                const res = await axios.get(`/api/user?username=${userSearch}`);
-                setData(res.data.user);
-            } else {
-                setData([]);
-            }
-        }
+    // useEffect(() => {
+    //     const handleUserSearch = async () => {
+    //         if (userSearch.length > 1) {
+    //             const res = await axios.get(`/api/user/${userSearch}`);
+    //             setData(res.data.user);
+    //         } else {
+    //             setData([]);
+    //         }
+    //     }
 
-        handleUserSearch();
-    }, [userSearch]);
+    //     handleUserSearch();
+    // }, [userSearch]);
 
     return (
         <div className='flex items-center gap-4'>
@@ -46,7 +46,7 @@ export default function NavbarUser({ isOrg }: { isOrg: boolean }) {
                 <Button variant='secondary'>Create Badge</Button>
             }
 
-            <Command>
+            {/*<Command>
                 <CommandInput
                     placeholder="Search for your friends"
                     value={userSearch}
@@ -67,7 +67,7 @@ export default function NavbarUser({ isOrg }: { isOrg: boolean }) {
                         <CommandEmpty>No results found.</CommandEmpty>
                     )}
                 </CommandList>
-            </Command>
+                    </Command>*/}
 
             <DropdownMenu>
                 <DropdownMenuTrigger>
