@@ -4,6 +4,7 @@ import DiscordProvider from "next-auth/providers/discord";
 import GithubProvider from "next-auth/providers/github";
 import { PrismaClient } from "@prisma/client"
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import { Session } from "inspector";
 
 const prisma = new PrismaClient();
 const scopes = ['identify', 'email']
@@ -11,7 +12,9 @@ const scopes = ['identify', 'email']
 export interface ExtendedUser extends DefaultUser {
   username?: string | null;
   isOrganisation?: boolean | null;
+  userId : string;
 }
+
 
 export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
@@ -37,7 +40,7 @@ export const authOptions: NextAuthOptions = {
     ],
     pages:{
       signIn:'/login',
-      newUser:'/?firsttime=true'
+      newUser:'/firsttime'
     },
     callbacks: {
       async jwt({ token }) {

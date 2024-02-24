@@ -20,7 +20,7 @@ export async function GET(request: NextRequest, { params }: { params: { slug: st
     });
 
     if (!userData) {
-      return NextResponse.json({error:"user-not-found"});
+      return NextResponse.json({found:false,error:"user-not-found"});
     }
 
     const tokens = await prisma.tokens.findMany({

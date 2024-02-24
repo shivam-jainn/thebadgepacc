@@ -8,7 +8,6 @@ import { getServerSession } from 'next-auth';
 
 import { useParams } from 'next/navigation';
 
-import Firsttime from '@/components/firsttime/EnterUsername';
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -18,11 +17,11 @@ export default async function Home() {
   
     
       <Navbar />
-
+    
     <section className='px-8'>  
       {
         (session?.user)?
-          <Dashboard isOrg={false} />
+          <Dashboard isOrg={true} />
         :
         <Landing />
       }

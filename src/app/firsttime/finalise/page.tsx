@@ -5,13 +5,12 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import FirstTime from '@/assets/pages/firsttime/Firsttime-step-1.png'
 import { useRouter } from 'next/navigation'
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import usernameAtom from '@/atoms/Firstime/usernameAtom';
 
 export default function page() {
     const router = useRouter();
-    const username = 'shivamjain'
-    // const [username,setUsername] = useAtom(usernameAtom);
+    const username = useAtomValue(usernameAtom);
 const handleNextClick = ()=> {
     router.push(`/${username}`)    
 }

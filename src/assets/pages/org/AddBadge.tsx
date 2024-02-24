@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from 'next/navigation';
 import { IoClose } from "react-icons/io5";
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 
 export default function AddBadge({ modal, userName }: { modal?: boolean, userName: string }) {
   const router = useRouter();
@@ -14,6 +15,8 @@ export default function AddBadge({ modal, userName }: { modal?: boolean, userNam
     "badgeName": "",
     "badgeDesc": ""
   });
+  const session = useSession();
+
 
   const handleChange = (e, field: string) => {
     const updatedChange = { ...fields, [field]: e.target.value };
@@ -30,7 +33,7 @@ export default function AddBadge({ modal, userName }: { modal?: boolean, userNam
       const formData = new FormData();
       formData.append('badgeName', fields.badgeName);
       formData.append('badgeDesc', fields.badgeDesc);
-      formData.append('username_id', userName);
+      formData.append('email', session.data?.user?.email as string);
   
       if (badgeImage) {
         formData.append('badge_pic', badgeImage);
@@ -41,18 +44,16 @@ export default function AddBadge({ modal, userName }: { modal?: boolean, userNam
           'Content-Type': 'multipart/form-data',
         },
       });
-  
+
+      console.log(response);
+      
+      
       if (response.status === 200) {
-        try {
-          const data = JSON.parse(response.data);
-          console.log(data);
-        } catch (error) {
-          console.error('Error parsing JSON:', error);
-          // Handle the error or log it as needed
-        }
+        console.log(response.data); // Directly access the response data
       } else {
         console.error('Error creating badge:', response.statusText);
       }
+    
     } catch (error) {
       console.error('Error processing request:', error);
     }
