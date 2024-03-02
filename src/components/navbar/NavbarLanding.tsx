@@ -14,6 +14,7 @@ import {
   } from "@/components/ui/sheet"
 
 import HamClosed from '@/assets/navbar/HamburgerClosed.svg';
+import {  useRouter } from 'next/navigation';
 
 
 interface Navbarprops{
@@ -23,25 +24,43 @@ interface Navbarprops{
 export default function NavbarLanding({isDark}:Navbarprops) {
   const [hamOpen, setHamOpen] = useState(false);
   
+  const router = useRouter();
+
   const handleOpen = (prev:any) => {
     console.log(prev.value);
     setHamOpen(!prev);
   };
 
+  const HomeClick = (()=>{
+    router.push('/');
+  })
+
+  const PricingClick = (()=>{
+    router.push('/pricing');
+  })
+
+  const SigninClick = (()=>{
+    router.push('/login');
+  })
+
+  const SignupClick = (()=>{
+    router.push('/login');
+  })
+
   return (
     <>
       <div className={` flex justify-evenly items-center gap-4 max-md:hidden ${isDark?"bg-black":""} `}>
-        <Button variant='link' className='text-white'>
+        <Button variant='link' className='text-white' onClick={HomeClick}>
           Home
         </Button>
-        <Button variant='link' className='text-white'>
+        <Button variant='link' className='text-white' onClick={PricingClick}>
           Pricing
         </Button>
 
-        <Button variant='secondary' >
+        <Button variant='secondary' onClick={SigninClick} >
           Sign In
         </Button>
-        <Button className='border-white border-2 bg-transparent hover:bg-white hover:text-black' >
+        <Button className='border-white border-2 bg-transparent hover:bg-white hover:text-black' onClick={SignupClick} >
           Sign Up
         </Button>
       </div>
