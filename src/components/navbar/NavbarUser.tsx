@@ -23,6 +23,8 @@ import {
     CommandItem,
 } from "@/components/ui/command"
 
+import { signOut } from 'next-auth/react';
+
 export default function NavbarUser({ isOrg }: { isOrg: boolean }) {
     const [userSearch, setUserSearch] = useState('');
     const [data, setData] = useState([]);
@@ -97,7 +99,11 @@ export default function NavbarUser({ isOrg }: { isOrg: boolean }) {
                     <DropdownMenuItem className='flex justify-center items-center'>Profile</DropdownMenuItem>
                     <DropdownMenuItem className='flex justify-center items-center'>Billing</DropdownMenuItem>
                     <DropdownMenuItem className='flex justify-center items-center'>Settings</DropdownMenuItem>
-                    <DropdownMenuItem className={cn(buttonVariants({ variant: "destructive" }), "w-full")}>Log Out</DropdownMenuItem>
+                    <DropdownMenuItem className={cn(buttonVariants({ variant: "destructive" }), "w-full")} onClick={() =>
+                        signOut({
+                            callbackUrl: `${window.location.origin}`
+                        })
+                    }>Log Out</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
