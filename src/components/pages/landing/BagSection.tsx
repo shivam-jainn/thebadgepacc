@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 
 
@@ -5,8 +6,12 @@ import Image from 'next/image'
 import LandingBag from '../../../assets/pages/landing/landing-bag.svg'
 import { Button } from '@/components/ui/button'
 
+import { useRouter } from 'next/navigation';
 
 export default function BagSection() {
+
+  const router = useRouter();
+
   return (
     <section className='flex flex-col min-h-[80vh] justify-evenly'>
     <div className='flex flex-col items-center'>
@@ -21,7 +26,7 @@ export default function BagSection() {
     </div>
 
     <div className='flex flex-col items-center gap-4 max-sm:justify-between md:flex-row md:justify-center'>
-      <Button className='w-full md:p-6 md:max-w-md'>Collect Badges</Button>
+      <Button className='w-full md:p-6 md:max-w-md' onClick={()=>{router.push('/login')}}>Collect Badges</Button>
       <Button variant='outline' className='w-full md:p-6 md:max-w-md'>Explore More</Button>
 
     </div>
